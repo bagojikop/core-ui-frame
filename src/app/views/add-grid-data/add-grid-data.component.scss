@@ -1,0 +1,76 @@
+.btn-sm-custom-table {
+    padding: 0.2rem 0.4rem;
+    /* Smaller padding */
+    font-size: 0.75rem;
+    /* Smaller font size */
+    line-height: 1.2;
+    /* Adjusted line height */
+    border-radius: 0.2rem;
+  }
+  
+  .actionTableHeight {
+    height: 150px;
+    overflow-y: auto;
+    display: block;
+    overflow-x: hidden;
+  }
+  
+  .noDataImg {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // width: 100%;  /* Ensure the image takes up the full width of the parent */
+    // height: 100%; /* Ensure the image takes up the full height of the parent */
+  }
+  
+  .gapInputFields {
+    padding-left: 20px;
+    width: 50%;
+    //  padding-bottom: 10px;
+  }
+  
+  .d-flex-width {
+    width: 50%;
+  }
+  
+  .d-flex-narr{
+  display: flex;
+  flex-direction: row;
+  }
+  
+  .narr-Gap {
+    padding-left: 20px;
+  
+    //  padding-bottom: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .d-flex-column {
+      flex-direction: column;
+    }
+  
+    .gapInputFields {
+      padding-left: 0px;
+      width: 100%;
+      //  padding-bottom: 10px;
+    }
+  
+    .d-flex-width {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .d-flex-narr {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .narr-Gap {
+      padding-left: 0px;
+      width: 100%;
+      //  padding-bottom: 10px;
+    }
+  }

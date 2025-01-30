@@ -1,0 +1,7 @@
+.table-container {
+    width: 100%;
+    max-height: calc(100vh - 220px); /* Adjust based on the remaining space in your UI */
+    overflow: auto; /* Enable scrolling if content exceeds the height */
+    border: 1px solid #dee2e6; /* Optional: Add a border for aesthetics */
+    border-radius: 0.25rem; /* Optional: Add rounded corners */
+  }

@@ -1,0 +1,107 @@
+<!-- <div class="mt-2">
+
+    <ng-container *ngIf="isLoading; else tableContent">
+      <p>Loading...</p>
+    </ng-container>
+  
+
+    <ng-template #errorTemplate>
+      <p class="text-danger">{{ errorMessage }}</p>
+    </ng-template>
+  
+
+    <ng-template #tableContent>
+      <ng-container *ngIf="!errorMessage; else errorTemplate">
+        <div class="d-flex align-items-center flex-column">
+
+          <div class="table-container">
+            <c-table hover striped responsive class="table">
+              <thead class="table-bordered">
+                <tr>
+                  <th>Account Name</th>
+                  <th>Group</th>
+                  <th>Alias/Account ID</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let account of accountList">
+                  <td>{{ account.accName }}</td>
+                  <td>{{ account.sgCodeNavigation.sgName }}</td>
+                  <td>{{ account.accAlias }}</td>
+                  <td class="text-center">
+                    <i class="bi bi-eye text-primary me-3" style="cursor: pointer;" title="Edit"
+                      (click)="editAccount(account)"></i>
+                    <i class="bi bi-trash text-danger" style="cursor: pointer;" title="Delete"
+                      (click)="deleteAccount(account)"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </c-table>
+          </div>
+  
+          <div class="d-flex justify-content-between align-items-center mt-3 w-100">
+            <button class="btn btn-outline-secondary btn-sm" (click)="changePage(pageDetails.currentPage - 1)">
+              Previous
+            </button>
+            <span>
+              Page {{ pageDetails.currentPage }} of {{ pageDetails.totalPages }} (Total: {{ pageDetails.totalCount }}
+              records)
+            </span>
+            <button class="btn btn-outline-secondary btn-sm" [disabled]="!pageDetails.hasNext"
+              (click)="changePage(pageDetails.currentPage + 1)">
+              Next
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-template>
+  </div> -->
+
+  <c-smart-table
+  [items]="accountList"
+  [columns]="columns"
+  [activePage]="pageDetails.currentPage"
+  [itemsPerPage]="5"
+  [itemsPerPageSelect]="true"
+  [pagination]="true"
+  [columnFilter]="true"
+  [columnSorter]="true"
+  [tableProps]="{ hover: true, striped: true, responsive: true }"
+  [tableBodyProps]="{ align: 'middle' }"
+  header
+  pagination
+>
+  <ng-template cTemplateId="tableData" let-columnName="columnName" let-item="item">
+    <td>
+      <ng-container [ngSwitch]="columnName">
+        <ng-container *ngSwitchCase="'action'">
+          <button
+            cButton
+            color="info"
+            size="sm"
+            variant="outline"
+            (click)="editAccount(item.id)"
+          >
+            <i class="cil-pencil"></i>
+          </button>
+          <button
+            cButton
+            color="danger"
+            size="sm"
+            variant="outline"
+            class="ms-1"
+            (click)="deleteAccount(item.id)"
+          >
+            <i class="cil-trash"></i>
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          {{ item[columnName] }}
+        </ng-container>
+      </ng-container>
+    </td>
+  </ng-template>
+</c-smart-table>
+
+

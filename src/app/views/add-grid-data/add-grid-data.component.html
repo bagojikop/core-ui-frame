@@ -1,0 +1,587 @@
+<div class="from-body">
+
+    <div class="mt-2">
+
+        <div class="card-body">
+            <fieldset>
+                <form #account="" class="needs-validation" novalidate>
+                    <div class="container">
+                        <!-- <div class="d-flex d-flex-column">
+
+                            <div class="d-flex-width">
+
+                                <input name="accName" class="form-control" label="Account Name" 
+                                    [required]="true">
+                          
+                            </div>
+                            <div class="gapInputFields d-flex d-flex-column">
+
+                                <div class="d-flex-width">
+                                    <input label="PAN No" name="panno" [width]="'clamp(130px, 100%, 100px)'"
+                                    class="form-control">
+                           
+                                </div>
+                                <div class="gapInputFields">
+                                    <input name="tanno" label="TAN No"
+                                    class="form-control">
+                           
+                                </div>
+
+                            </div>
+                        </div> -->
+
+
+                        <!-- <div class="d-flex d-flex-column">
+
+                            <div class="d-flex d-flex-width d-flex-column">
+
+                                <div class="d-flex-width">
+                                    <label>Organization</label> -->
+                                    <!-- <ng-select [searchable]="true" class="" name="firmtype"
+                                        [(ngModel)]="entity.accPanDetail.firmType" [disabled]="navactions.fieldset">
+                                        <ng-option *ngFor="let firmt of reference.firms" [value]="firmt.ftId">
+                                            {{firmt.ftName}}</ng-option>
+                                    </ng-select> -->
+                                <!-- </div>
+                                <div class="gapInputFields">
+                                    <input name="alias"  label="Alias/Account ID"
+                                    class="form-control">
+                               
+                                </div>
+
+                            </div>
+
+                            <div class="gapInputFields"> -->
+                                <!-- <input label="CIN No" name="cinno" [(ngModel)]="entity.accPanDetail.accCinNo"
+                                    [maxlength]="50" [styleCase]="'u'">
+                                </input> -->
+                            <!-- </div>
+                        </div> -->
+
+                        <div class="d-flex d-flex-column">
+                            <div class="d-flex-width">
+                                <!-- <app-ngselect apiUrl="SubGroup/getGroup" label="Group" bindLabel="sgName"
+                                    bindValue="sgCode" name="sgCode" [(ngModel)]="entity.sgCode"
+                                    [defaultProperty]="entity.sgCodeNavigation" [disabled]="navactions.fieldset"
+                                    required (change)="onSelectGroup($event)" [width]="'clamp(400px, 100%, 100px)'"
+                                    [bindSubObj]="[{key:'Group',value:'grpName'},
+                                                     {key:'Primary Group',value:'grpCodeNavigation?.mgCodeNavigation?.mgName'}]">
+                                </app-ngselect> -->
+                            </div>
+                            <div class="gapInputFields">
+
+                                <!-- <app-ngselect apiUrl="Place/getPlace" label="Place" bindLabel="cityName"
+                                    bindValue="cityId" name="placeAcc" [(ngModel)]="entity.placeId"
+                                    (change)="entity.placeIdNavigation=$event" [bindSubObj]="[
+                                    {key:'Taluka',value:'taluka?.talukaName'},
+                                    {key:'District',value:'taluka?.district?.districtName'},
+                                    {key:'State',value:'taluka?.district?.stateCodeNavigation?.stateName'}]"
+                                    [defaultProperty]="entity.placeIdNavigation" [required]="true"
+                                    [disabled]="navactions.fieldset"
+                                    [width]="'clamp(400px, 100%, 100px)'"></app-ngselect> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+
+
+                        <div class="container mt-4">
+                            <div class="card">
+
+                                <div class="card-header">
+                                    <h5>GST Info</h5>
+                                </div>
+                                <table class="table card-body">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-start ps-3 border-end fw-bold" scope="col">
+                                                Effective Date
+                                            </th>
+                                            <th class="text-start ps-3 border-end fw-bold" scope="col">
+                                                <b>Registration Type</b>
+                                            </th>
+                                            <th class="text-start ps-3 border-end fw-bold" scope="col">
+                                                <b>GSTIN</b>
+                                            </th>
+                                            <th class="text-center fw-bold" scope="col">
+                                                <b>Action</b>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th class="border-end">
+                                                <input name="effDate" type="date"
+                                                class="form-control" />
+
+                                            </th>
+                                            <th class="border-end">
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Open this select menu</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                  </select>
+
+                                            </th>
+
+                                            <th class="border-end">
+                                                <input name="gstno"
+                                                class="form-control" />
+
+                                                <!-- <div *ngIf="isGstinInvalid()" class="text-danger">
+                                                    Invalid GSTIN
+                                                </div> -->
+
+                                            </th>
+                                            <th class="text-center">
+                                                <button class="btn btn-primary btn-sm"(click)="addgstTablerow()"
+                                                    
+                                                    >
+                                                    <i class="cil-plus"></i></button>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="actionTableHeight">
+
+                                        <div *ngIf="!entity?.accGstDetails || entity.accGstDetails.length === 0"
+                                            class="noDataImg">
+                                            <img src="../../../../../../assets/IMG/noData.png" width="50">
+                                            <p>Record is empty</p>
+                                        </div>
+
+                                        <tr *ngFor="let v of entity.accGstDetails;let i=index;">
+                                            <td class="text-start border-end ps-3">{{v.gstrDate |date:'dd/MM/yyyy'}}
+                                            </td>
+                                            <td class="text-start ps-3 border-end">{{v.gst_typ_name}}</td>
+                                            <td class="text-start ps-3 border-end">{{v.accGstn}}</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-primary btn-sm-custom-table me-1"
+                                                    type="button" (click)="editgstTablerow(v,i)">
+                                                    <i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-danger btn-sm-custom-table" type="button"
+                                                    (click)="deletegstTablerow(i)">
+                                                    <i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="container mt-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>License</h5>
+                                </div>
+                                <table class="table card-body">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-start ps-3 border-end fw-bold" scope="col">
+                                                Name of License</th>
+                                            <th class="text-start ps-3 border-end fw-bold" scope="col">
+                                                License No</th>
+                                            <th class="text-start ps-3 border-end fw-bold" scope="col">
+                                                Valid Date</th>
+
+                                            <th class="text-center fw-bold" scope="col">
+                                                Action
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <input name="lctype"
+                                                class="form-control"/>
+                                            </th>
+                                            <th>
+
+                                                <input name="lcno" 
+                                                class="form-control"/>
+                                            </th>
+                                            <th>
+                                                <input type="text" class="form-control" type="date" name="lcdate"
+                                                    
+                                                    >
+
+                                            </th>
+                                            <th class="text-center"><button class="btn btn-primary btn-sm"
+                                                    type="button" (click)="license()"
+                                                    [disabled]="!reference.accLicenses.licDate">
+                                                    <i class="cil-plus"></i></button></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="actionTableHeight">
+
+                                        <div *ngIf="!entity?.accLicenses || entity.accLicenses.length === 0"
+                                            class="noDataImg">
+                                            <img src="../../../../../../assets/IMG//noData.png" width="50">
+                                            <p>Record is empty</p>
+                                        </div>
+                                        <tr *ngFor="let v of entity.accLicenses;let i=index;">
+                                            <td class="text-start ps-3 border-end">{{v.type}}</td>
+                                            <td class="text-start ps-3 border-end">{{v.licNo}}</td>
+                                            <td class="text-start ps-3 border-end">{{v.licDate | date:'dd-MM-yyyy'}}
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="ms-4">
+                                                    <button class="btn btn-primary btn-sm-custom-table me-1"
+                                                        type="button" (click)="licenseedit(v)">
+                                                        <i class="fas fa-edit"></i></button>
+                                                    <button class="btn btn-danger btn-sm-custom-table" type="button"
+                                                        (click)="licensedelete(v)">
+                                                        <i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div>
+
+
+                        <div class="container mt-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Address</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex d-flex-column">
+                                        <div class="d-flex-width">
+                                            <label for="exampleInputEmail1" class="form-label">Address</label>
+                                            <input id="w3review"  class="form-control mb-2" label="Address I" name="accAddress1"
+                                                />
+                                        
+
+                                            <div class="mt-2">
+                                                <label for="exampleInputEmail1" class="form-label">contact number</label>
+                                                <input name="contactperson" class="form-control mb-2" label="Contact Person"
+                                                    />
+                                            </div>
+                                            <label for="exampleInputEmail1" class="form-label">designation</label>
+                                            <input name="designation" class="form-control mb-2" label="Designation"
+                                              />
+
+
+                                            <div class="d-flex d-flex-column">
+                                                <div class="d-flex-width">
+                                                    <label for="exampleInputEmail1" class="form-label">landline number</label>
+                                                    <input name="landlineno" class="form-control" type="number" label="Landline No"
+                                                        
+                                                    />
+
+                                                </div>
+                                                <div class="gapInputFields">
+                                                    <label for="exampleInputEmail1" class="form-label"> Mobile number</label>
+                                                    <input label="Mobile No" type="number"
+                                                         name="mobno"
+                                                         class="form-control" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="gapInputFields">
+
+                                            <label for="exampleInputEmail1" class="form-label">Address</label>
+                                            <input id="w4review" name="addresscon2" 
+                                            class="form-control mb-2"
+                                                label="Address II"
+                                                >
+
+
+                                            <div class="mt-2">
+                                                <label for="exampleInputEmail1" class="form-label">Contact number</label>
+                                                <input name="contactperson2" label="Contact Person"
+                                                class="form-control mb-2"  />
+                                            </div>
+
+                                            <label for="exampleInputEmail1" class="form-label">Designation</label>
+                                            <input name="designation2" label="Designation"
+                                            class="form-control mb-2" />
+
+
+
+                                            <div class="d-flex d-flex-column">
+                                                <div class="d-flex-width">
+                                                    <label for="exampleInputEmail1" class="form-label">Landline number</label>
+                                                    <input name="landlineno2" type="number" label="Landline No"
+                                                        
+                                                    class="form-control"/>
+
+                                                </div>
+                                                <div class="gapInputFields">
+                                                    <label for="exampleInputEmail1" class="form-label">Mobile number</label>
+                                                    <input label="Mobile No" type="number"
+                                                       
+                                                        name="mobno1"class="form-control"
+                                                         />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex d-flex-column">
+
+                                        <div class="d-flex-width">
+                                            <label for="exampleInputEmail1" class="form-label">website</label>
+                                            <input label="#Website" name="website"
+                                               class="form-control">
+                                        </div>
+
+                                        <div class="gapInputFields">
+                                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                            <input label="#Email" type="email" name="email"
+                                               
+                                                class="form-control">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 
+                                        <legend class="ms-2 px-2 float-none bg-white w-auto"
+                                            style="font-style:italic;font-size: large;"><b>Contact Details</b>
+                                        </legend> -->
+
+
+
+
+                        <div>
+
+
+
+                            <div class="container mt-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Bank Details</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex d-flex-column mb-2">
+                                            <div class="d-flex-width">
+
+                                                <label for="exampleInputEmail1" class="form-label">Bank Name</label>
+                                                <input name="bankName" class="form-control" label="Bank Name"
+                                                     />
+                                            </div>
+
+                                            <div class="gapInputFields">
+                                                <label for="exampleInputEmail1" class="form-label">Bank Branch</label>
+                                                <input name="bankaddress" label="Bank Branch" class="form-control"
+                                                    />
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="d-flex-width d-flex d-flex-column">
+
+                                            <div class="d-flex-width">
+                                                <label for="exampleInputEmail1" class="form-label">Account Number</label>
+                                                <input name="bankaccountno" class="form-control" label="Account No"
+                                                class="form-control" />
+
+                                            </div>
+
+                                            <div class="gapInputFields">
+                                                <label for="exampleInputEmail1" class="form-label">IFSC code</label>
+                                                <input name="ifsccode" class="form-control" label="IFSC Code"
+                                                    
+                                                class="form-control"/>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="container mt-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Credit Details</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex d-flex-column">
+                                        <div class="d-flex-width">
+                                            <label class="mb-0">Credit Limit (In ₹)</label>
+                                            <input class="form-control text-end" autocomplete="off" name="crlimit"
+                                                CurrencyMask
+                                                style="width:clamp(150px, 100%, 0px)" currency="INR" symbol
+                                                fraction="2">
+                                        </div>
+
+                                        <div class="gapInputFields">
+                                            <label class="mb-0">Credit (In Days)</label>
+                                            <input class="form-control" autocomplete="off" name="days"
+                                                style="width:clamp(100px, 100%, 0px)"
+                                                 numberOnly>
+                                        </div>
+                                        <div class="gapInputFields">
+                                            <label class="mb-0">Currency</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                              </select>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container mt-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mt-2">Delivery (Locations)</h5>
+                            </div>
+                            <table class="table card-body">
+                                <thead>
+                                    <tr>
+                                        <th class="text-start fw-bold ps-3 border-end" scope="col">
+                                            Location Name</th>
+                                        <th class="text-start fw-bold ps-3 border-end" scope="col">
+                                            Place
+                                        </th>
+                                        <th class="text-start fw-bold ps-3 border-end" scope="col">
+                                            Address I
+                                        </th>
+                                        <th class="text-start fw-bold ps-3 border-end" scope="col">
+                                            Address II
+                                        </th>
+                                        <th class="text-center fw-bold ps-3 border-end" scope="col">
+                                            Action
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+
+                                            <input name="addname" class="form-control"
+                                                />
+                                        </th>
+                                        <th>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                              </select>
+
+                                        </th>
+                                        <th>
+
+                                            <input name="address1" class="form-control"
+                                                (ngModel)="acc.accBusinessLocations.address1"
+                                                />
+                                        </th>
+                                        <th>
+
+                                            <input name="address2"
+                                                class="form-control" />
+                                        </th>
+                                        <th class="text-center">
+                                            <button class="btn btn-primary btn-sm" type="button"
+                                                (click)="Add()" [disabled]="!acc.accBusinessLocations.address2">
+                                                <i class="cil-plus"></i></button>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="actionTableHeight">
+                                    <div *ngIf="!entity?.accBusinessLocations || entity.accBusinessLocations.length === 0"
+                                        class="noDataImg">
+                                        <img src="../../../../../../assets/IMG//noData.png" width="50">
+                                        <p>Record is empty</p>
+                                    </div>
+                                    <tr *ngFor="let v of entity.accBusinessLocations;let i=index;">
+                                        <td class="text-start ps-3 border-end">{{v.addName}}</td>
+                                        <td class="text-start ps-3 border-end">{{v.city.cityName}}</td>
+                                        <td class="text-start ps-3 border-end">{{v.address1}}</td>
+                                        <td class="text-start ps-3 border-end">{{v.address2}}</td>
+                                        <td class="text-center">
+
+                                            <button class="btn btn-primary btn-sm-custom-table me-1" type="button"
+                                                (click)="editrow(v)">
+                                                <i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-danger btn-sm-custom-table" type="button"
+                                                (click)="deleterow(v)">
+                                                <i class="fas fa-trash"></i></button>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                    <div class="container mt-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Audit</h5>
+                            </div>
+                            <div class="card-body d-flex justify-content-between">
+                                <div>
+                                    <label class="mb-0">Created User</label>
+                                    <p>{{entity.createdUser}}</p>
+                                </div>
+
+                                <div>
+                                    <label class="mb-0">Created Date</label>
+                                    <p>{{entity.createdDt}}</p>
+                                </div>
+
+                                <div>
+                                    <label class="mb-0">Modified User</label>
+                                    <p>{{entity.modifiedUser}}</p>
+                                </div>
+
+                                <div>
+                                    <label class="mb-0">Modified Date</label>
+                                    <p>{{entity.modifiedDt}}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="viewing2==2">
+
+
+
+                        <div class="container mt-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5> Status</h5>
+                                </div>
+                                <div class="card-body d-flex">
+                                    <h6>Blocked</h6>
+                                    <ui-switch [checked]=false name="block"
+                                        ></ui-switch>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
